@@ -24,6 +24,8 @@ handler = logging.FileHandler(filename=filename, encoding='utf-8', mode='w')
 
 @client.event
 async def on_ready():
+    guild = client.get_guild(idconfig.GUILD)
+    await welcome.welcomeReaction(guild)
     print(f'We have logged in as {client.user}')
 
 @client.event

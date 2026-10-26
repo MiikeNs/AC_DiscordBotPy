@@ -11,12 +11,13 @@ async def giveGuestRole(member):
   if guestRole not in memberRoles :
     await member.add_roles(guestRole)
 
-async def welcomeReaction(member):
-  welcomeChannel = member.guild.get_channel(idconfig.WELCOME_CHANNEL)
+async def welcomeReaction(guild):
+  welcomeChannel = guild.get_channel(idconfig.WELCOME_CHANNEL)
+  defaultMessage = await welcomeChannel.fetch_message(idconfig.DEFAULT_MESSAGE)
+  botReacted = False
+  for reaction in defaultMessage.reactions:
+      if reaction.emoji == "✅" and reaction.me:
+          botReacted = True
 
-  try:
-    defaultMessage = await welcomeChannel.fetch_message(idconfig.DEFAULT_MESSAGE)
-    await welcomeChannel.send("Found the message!")
-  except discord.NotFound:
-    await welcomeChannel.send("No dice!")
- 
+  if not botReacted:
+      await defaultMessage.add_reaction("✅")

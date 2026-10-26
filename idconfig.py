@@ -16,6 +16,7 @@ GUEST_ROLE = _config['roles']['guest_role_id']
 
 #SPECIFIC-----------------------------------------------------------------
 DEFAULT_MESSAGE = _config['specific']['default_message_id']
+GUILD = _config['specific']['guild_id']
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')

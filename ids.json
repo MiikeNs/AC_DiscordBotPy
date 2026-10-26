@@ -9,7 +9,8 @@
   },
 
   "specific": {
-    "default_message_id": 1564338588827525243
+    "default_message_id": 1564338588827525243,
+    "guild_id": 1519391415619293336
   }
 
 }
