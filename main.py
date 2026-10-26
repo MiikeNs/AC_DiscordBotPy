@@ -8,7 +8,6 @@ import idconfig
 
 intents = discord.Intents.default()
 intents.message_content = True
-intents.Guilds = True
 
 client = discord.Client(intents=intents)
 
