@@ -13,6 +13,7 @@ WELCOME_CHANNEL = _config['channels']['welcome_channel_id']
 #ROLES-----------------------------------------------------------------
 
 GUEST_ROLE = _config['roles']['guest_role_id']
+APPLICANT_ROLE = _config['roles']['applicant_role_id']
 
 #SPECIFIC-----------------------------------------------------------------
 DEFAULT_MESSAGE = _config['specific']['default_message_id']

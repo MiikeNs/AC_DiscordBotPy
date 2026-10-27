@@ -3,12 +3,13 @@ import discord
 import os
 import logging
 from datetime import datetime
-from communityFeatures import welcome
+from eventFeatures import welcome, giveGuestRole, welcomeReaction, applicantStart
 import idconfig
 
 intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
+intents.reactions = True
 
 client = discord.Client(intents=intents)
 
@@ -25,7 +26,7 @@ handler = logging.FileHandler(filename=filename, encoding='utf-8', mode='w')
 @client.event
 async def on_ready():
     guild = client.get_guild(idconfig.GUILD)
-    await welcome.welcomeReaction(guild)
+    await welcomeReaction.welcomeReaction(guild)
     print(f'We have logged in as {client.user}')
 
 @client.event
@@ -39,8 +40,12 @@ async def on_message(message):
 @client.event
 async def on_member_join(member):
     await welcome.welcomeMessage(member)
-    await welcome.giveGuestRole(member)
-    await welcome.welcomeReaction(member)
+    await giveGuestRole.giveGuestRole(member)
+    await welcomeReaction.welcomeReaction(member)
+
+@client.event
+async def on_raw_reaction_add(payload):
+    await applicantStart.applicantRoleAdd(payload)
 
 
 client.run(idconfig.TOKEN, log_handler=handler, log_level=logging.INFO)
